@@ -9,6 +9,10 @@ public final class IRadioButton extends ICompoundButton<IRadioButton> {
     super(interactionAdapter);
   }
 
+  public static Builder forRadioButton() {
+    return new Builder(new ViewInteractionAdapter.Factory());
+  }
+
   public static final class Builder extends ICompoundButton.Builder<IRadioButton, Builder> {
 
     public Builder(@NonNull InteractionAdapterFactory adapterFactory) {

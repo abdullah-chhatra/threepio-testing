@@ -161,6 +161,10 @@ public abstract class IViewBase<I extends IViewBase> {
     return match(ViewMatchers.isEnabled());
   }
 
+  public I isNotEnabled() {
+    return match(not(ViewMatchers.isEnabled()));
+  }
+
   public I isFocusable() {
     return match(ViewMatchers.isFocusable());
   }

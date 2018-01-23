@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
 android {
     compileSdkVersion 26
@@ -35,3 +37,14 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
+ext {
+    project_version = '0.0.1'
+    artifact_id     = 'caffe-latte'
+    project_name    = 'Caffe Latte'
+    project_desc    = 'Intutive and easy to use wrapper over Googles Espresso UI testing library.'
+    project_url     = 'https://github.com/abdullah-chhatra/threepio-testing'
+    git_url         = 'https://github.com/abdullah-chhatra/threepio-testing.git'
+}
+
+apply from: 'https://raw.githubusercontent.com/abdullah-chhatra/threepio-scripts/master/bintrayupload.gradle'

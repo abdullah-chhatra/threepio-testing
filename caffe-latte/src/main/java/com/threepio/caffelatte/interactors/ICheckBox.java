@@ -8,6 +8,10 @@ public final class ICheckBox extends ICompoundButton<ICheckBox> {
     super(interactionAdapter);
   }
 
+  public static Builder forCheckBox() {
+    return new Builder(new ViewInteractionAdapter.Factory());
+  }
+
   public static final class Builder extends ICompoundButton.Builder<ICheckBox, Builder> {
 
     public Builder(@NonNull InteractionAdapterFactory adapterFactory) {
