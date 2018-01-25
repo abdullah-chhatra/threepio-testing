@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.threepio.testing.`SigninActivity.java`">
+    tools:context="com.threepio.testing.SigninActivity">
 
     <EditText
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:hint="User Name"/>
+        android:hint="User Email"/>
 
     <EditText
         android:id="@+id/password"
@@ -30,5 +30,6 @@
         android:id="@+id/sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In"/>
+        android:text="Sign In"
+        android:enabled="false"/>
 </LinearLayout>

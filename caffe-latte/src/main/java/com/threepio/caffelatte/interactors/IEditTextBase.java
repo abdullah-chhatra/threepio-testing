@@ -4,7 +4,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
+import android.text.InputType;
 
+import static android.text.InputType.TYPE_CLASS_DATETIME;
+import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_DATETIME_VARIATION_DATE;
+import static android.text.InputType.TYPE_DATETIME_VARIATION_NORMAL;
+import static android.text.InputType.TYPE_DATETIME_VARIATION_TIME;
+import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
+import static android.text.InputType.TYPE_NUMBER_FLAG_SIGNED;
 import static com.threepio.caffelatte.Utils.getString;
 
 public abstract class IEditTextBase<I extends IEditTextBase> extends ITextViewBase<I> {

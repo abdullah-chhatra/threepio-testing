@@ -14,6 +14,10 @@ public class ITextViewBase<I extends ITextViewBase> extends IViewBase<I> {
     super(interactionAdapter);
   }
 
+  public I hasEmptyText() {
+    return hasText("");
+  }
+
   public I hasText(@StringRes int stringId) {
     return match(ViewMatchers.withText(stringId));
   }
