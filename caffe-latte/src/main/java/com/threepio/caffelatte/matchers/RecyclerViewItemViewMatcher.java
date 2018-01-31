@@ -23,6 +23,11 @@ public class RecyclerViewItemViewMatcher extends RecyclerViewItemMatcher {
 
   @Override
   public void describeTo(Description description) {
-
+    description
+      .appendText("(is item in RecyclerView that matches: ")
+      .appendDescriptionOf(parentMatcher)
+      .appendText(" and ")
+      .appendDescriptionOf(itemMatcher)
+      .appendText(")");
   }
 }

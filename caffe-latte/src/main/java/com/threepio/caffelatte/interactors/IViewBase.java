@@ -284,6 +284,14 @@ public abstract class IViewBase<I extends IViewBase> {
       return addMatcher(ViewMatchers.isRoot());
     }
 
+    public B isDisplayed() {
+      return addMatcher(ViewMatchers.isDisplayed());
+    }
+
+    public B isNotDisplayed() {
+      return addMatcher(not(ViewMatchers.isDisplayed()));
+    }
+
     public B withContentDescription() {
       return addMatcher(ViewMatchers.hasContentDescription());
     }

@@ -16,7 +16,7 @@ import java.util.List;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static org.hamcrest.Matchers.allOf;
 
-class ViewInteractionAdapter implements InteractionAdapter {
+public class ViewInteractionAdapter implements InteractionAdapter {
 
   private final ViewInteraction viewInteraction;
   private final Matcher<View> viewMatcher;
@@ -51,7 +51,7 @@ class ViewInteractionAdapter implements InteractionAdapter {
     viewInteraction.check(assertion);
   }
 
-  static class Factory implements InteractionAdapterFactory {
+  public static class Factory implements InteractionAdapterFactory {
     private final List<Matcher<? super View>> matchers;
 
     public Factory() {
