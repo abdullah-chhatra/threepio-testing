@@ -36,7 +36,7 @@ public class SignInActivityTest {
     .withId(R.id.show_password)
     .build();
 
-  private IButton signIn = forButton()
+  private IButton signInButton = forButton()
     .withId(R.id.sign_in)
     .withText("Sign In")
     .build();
@@ -60,7 +60,7 @@ public class SignInActivityTest {
       .hasText("Show password")
       .isNotChecked();
 
-    signIn
+    signInButton
       .isDisplayed()
       .isNotEnabled();
   }
@@ -82,6 +82,6 @@ public class SignInActivityTest {
     userName.typeText("abcd@email.com");
     password.typeText("E948fkfj");
 
-    signIn.isEnabled();
+    signInButton.isEnabled();
   }
 }

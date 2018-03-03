@@ -1,5 +1,6 @@
 package com.threepio.caffelatte.interactors;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -9,7 +10,7 @@ import org.hamcrest.Matcher;
 
 public class IRecyclerViewBase<I extends IRecyclerViewBase> extends IViewBase<I> {
 
-  protected IRecyclerViewBase(InteractionAdapter interactionAdapter) {
+  protected IRecyclerViewBase(@NonNull InteractionAdapter interactionAdapter) {
     super(interactionAdapter);
   }
 
@@ -17,7 +18,7 @@ public class IRecyclerViewBase<I extends IRecyclerViewBase> extends IViewBase<I>
     return check(new RecyclerViewItemCountAssertion(count));
   }
 
-  public <B extends IViewBase.Builder> ItemBuilder<B> item(Class<B> builder) {
+  public <B extends IViewBase.Builder> ItemBuilder<B> item(@NonNull Class<B> builder) {
     return new ItemBuilder<>(builder, getViewMatcher());
   }
 
@@ -33,7 +34,7 @@ public class IRecyclerViewBase<I extends IRecyclerViewBase> extends IViewBase<I>
     private final Class<B> builder;
     private final Matcher<View> parentMatcher;
 
-    private ItemBuilder(Class<B> builder, Matcher<View> parentMatcher) {
+    private ItemBuilder(@NonNull Class<B> builder, @NonNull Matcher<View> parentMatcher) {
       this.builder = builder;
       this.parentMatcher = parentMatcher;
     }
@@ -59,13 +60,3 @@ public class IRecyclerViewBase<I extends IRecyclerViewBase> extends IViewBase<I>
     }
   }
 }
-
-//  public <B extends IViewBase.Builder> ItemBuilder<B> item(int itemType) {
-//    Class<B> builder = (Class<B>) itemBuilders.get(itemType);
-//    return new ItemBuilder<>(builder, getViewMatcher());
-//  }
-//@SuppressWarnings("unchecked")
-//public B addItemType(int itemType, Class<? extends IViewBase.Builder> itemBuilder) {
-//  itemBuilders.append(itemType, itemBuilder);
-//  return (B) this;
-//}

@@ -18,12 +18,10 @@ import static org.hamcrest.Matchers.allOf;
 
 public class ViewInteractionAdapter implements InteractionAdapter {
 
-  private final ViewInteraction viewInteraction;
   private final Matcher<View> viewMatcher;
 
   public ViewInteractionAdapter(@NonNull Matcher<View> matcher) {
     this.viewMatcher = matcher;
-    this.viewInteraction = Espresso.onView(matcher);
   }
 
   @Override
@@ -33,12 +31,12 @@ public class ViewInteractionAdapter implements InteractionAdapter {
 
   @Override
   public void perform(ViewAction action) {
-    viewInteraction.perform(action);
+    viewInteraction().perform(action);
   }
 
   @Override
   public void scrollTo() {
-    viewInteraction.perform(ViewActions.scrollTo());
+    viewInteraction().perform(ViewActions.scrollTo());
   }
 
   @Override
@@ -48,7 +46,11 @@ public class ViewInteractionAdapter implements InteractionAdapter {
 
   @Override
   public void check(ViewAssertion assertion) {
-    viewInteraction.check(assertion);
+    viewInteraction().check(assertion);
+  }
+
+  private ViewInteraction viewInteraction() {
+    return Espresso.onView(viewMatcher);
   }
 
   public static class Factory implements InteractionAdapterFactory {

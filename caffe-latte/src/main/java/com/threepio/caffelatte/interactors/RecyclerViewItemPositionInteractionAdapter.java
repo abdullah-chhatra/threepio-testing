@@ -19,15 +19,13 @@ import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo
 class RecyclerViewItemPositionInteractionAdapter implements InteractionAdapter {
 
   private final int position;
-  private final ViewInteraction parentInteraction;
+  private final Matcher<View> parentMatcher;
   private final RecyclerViewItemMatcher itemMatcher;
-  private final ViewInteraction itemInteraction;
 
   public RecyclerViewItemPositionInteractionAdapter(int position, Matcher<View> parentMatcher) {
     this.position = position;
-    this.parentInteraction = onView(parentMatcher);
+    this.parentMatcher = parentMatcher;
     this.itemMatcher = new RecyclerViewItemPositionMatcher(position, parentMatcher);
-    this.itemInteraction = onView(itemMatcher);
   }
 
   @Override
@@ -37,22 +35,30 @@ class RecyclerViewItemPositionInteractionAdapter implements InteractionAdapter {
 
   @Override
   public void perform(ViewAction action) {
-    parentInteraction.perform(actionOnItemAtPosition(position, action));
+    parentInteraction().perform(actionOnItemAtPosition(position, action));
   }
 
   @Override
   public void scrollTo() {
-    parentInteraction.perform(scrollToPosition(position));
+    parentInteraction().perform(scrollToPosition(position));
   }
 
   @Override
   public void match(Matcher<View> matcher) {
-    itemInteraction.check(matches(matcher));
+    itemInteraction().check(matches(matcher));
   }
 
   @Override
   public void check(ViewAssertion assertion) {
-    itemInteraction.check(assertion);
+    itemInteraction().check(assertion);
+  }
+
+  private ViewInteraction parentInteraction() {
+    return onView(parentMatcher);
+  }
+
+  private ViewInteraction itemInteraction() {
+    return onView(itemMatcher);
   }
 
   static class Factory implements InteractionAdapterFactory {

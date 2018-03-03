@@ -22,14 +22,13 @@ import static org.hamcrest.Matchers.allOf;
 
 public class RecyclerViewItemViewInteractionAdapter implements InteractionAdapter {
 
-  private final ViewInteraction parentInteraction;
+  private final Matcher<View> parentMatcher;
   private final RecyclerViewItemMatcher itemMatcher;
-  private final ViewInteraction itemInteraction;
+
 
   RecyclerViewItemViewInteractionAdapter(Matcher<View> itemMatcher, Matcher<View> parentMatcher) {
-    this.parentInteraction = onView(parentMatcher);
+    this.parentMatcher = parentMatcher;
     this.itemMatcher = new RecyclerViewItemViewMatcher(itemMatcher, parentMatcher);
-    this.itemInteraction = onView(itemMatcher);
   }
 
   @Override
@@ -39,12 +38,12 @@ public class RecyclerViewItemViewInteractionAdapter implements InteractionAdapte
 
   @Override
   public void perform(ViewAction action) {
-    parentInteraction.perform(actionOnItem(itemMatcher, action));
+    parentInteraction().perform(actionOnItem(itemMatcher, action));
   }
 
   @Override
   public void scrollTo() {
-    parentInteraction.perform(RecyclerViewActions.scrollTo(itemMatcher));
+    parentInteraction().perform(RecyclerViewActions.scrollTo(itemMatcher));
   }
 
   @Override
@@ -54,7 +53,15 @@ public class RecyclerViewItemViewInteractionAdapter implements InteractionAdapte
 
   @Override
   public void check(ViewAssertion assertion) {
-    itemInteraction.check(assertion);
+    itemInteraction().check(assertion);
+  }
+
+  private ViewInteraction parentInteraction() {
+    return onView(parentMatcher);
+  }
+
+  private ViewInteraction itemInteraction() {
+    return onView(itemMatcher);
   }
 
   static class Factory implements InteractionAdapterFactory {
