@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/caffe-latte/caffe-latte.iml" filepath="$PROJECT_DIR$/caffe-latte/caffe-latte.iml" />
+      <module fileurl="file://$PROJECT_DIR$/caffe-latte/caffe-latte2.iml" filepath="$PROJECT_DIR$/caffe-latte/caffe-latte2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-app/test-app.iml" filepath="$PROJECT_DIR$/test-app/test-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/threepio-testing.iml" filepath="$PROJECT_DIR$/threepio-testing.iml" />
     </modules>
   </component>

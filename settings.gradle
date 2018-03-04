@@ -1,1 +1,1 @@
-include ':app', ':caffe-latte'
+include ':caffe-latte', ':test-app'
