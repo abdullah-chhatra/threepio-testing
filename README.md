@@ -46,7 +46,7 @@ The library includes following wrapper for views:
 
 Testing compound views individually may not be that big an issue, but testing their usage within an activity posses some challange. Even worse if you have multiple instance of the compound view in an activity. You will have to deal with nested matchers that will try to match view with in views. This soon becomes quite a pain and prone to mistakes. 
 
-One techinque to solve this issue is to create your own class to encapsulate the testing behavior of the compound view. For example if you have contacts view that contains an `TextView` that displays user name, another `TextView` that displays status and a view that shows that the user is online. The interactor class can be written as:
+One techinque to solve this issue is to create your own class to encapsulate the testing behavior of the compound view. For example if you have contacts view that contains a `TextView` that displays user name, another `TextView` that displays status and a view that shows that the user is online. The interactor class can be written as:
 
 ``` Java
 class ContactItem extends IViewGroupBase<ContactItem> {
@@ -93,6 +93,12 @@ class ContactItem extends IViewGroupBase<ContactItem> {
     return this;
   }
 
+  // Static method to create builder.
+
+  public static Builder forContactItem() {
+    return new Builder(new ViewInteractionAdapter.Factory());
+  }
+  
   // You need to write a builder to instantiate this class.
   
   static public class Builder extends IViewGroupBase.Builder<ContactItem, Builder> {
