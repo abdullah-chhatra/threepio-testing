@@ -4,7 +4,7 @@ Espresso is great tool for writing UI tests on Android. But more often then not 
 
 Espresso test tends to be unnecessarily verbose. For example in a sign-in activity if I want assert that the user name `EditText` is displayed, has some hint text and it is empty I need to write:
 
-```
+``` Java
 public void testInitialUi() {
   onView(withId(R.id.user_name)).check(matches(isDisplayed()));
   onView(withId(R.id.user_name)).check(matches(withHint("User Email")));
@@ -14,7 +14,7 @@ public void testInitialUi() {
 
 The above code does not make it easy to understand what is really being tested, there is too much repetation. Using caffe-latte the same test can performed using following code:
 
-```
+``` Java
 private IEditText userName = IEditText.forEditText()
   .withId(R.id.user_name)
   .build();
@@ -144,3 +144,18 @@ class ContactItem extends IViewGroupBase<ContactItem> {
 
 ```
 
+Derive your class from `IViewGroupBase<>` passing your class as generic parameter to it. The `Builder` is as important as it will allow you to instantiate the class with ease and in readable way.
+
+``` Java
+
+private ContactItem item = forContactItem()
+      .withName("Bob")
+      .build();
+      
+
+public void testMethod() {
+    ace
+      .hasStatus("Going to movie")
+      .isOnline();
+}
+```
