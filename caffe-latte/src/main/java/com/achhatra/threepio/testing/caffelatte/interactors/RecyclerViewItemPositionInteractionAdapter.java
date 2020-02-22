@@ -1,9 +1,9 @@
 package com.achhatra.threepio.testing.caffelatte.interactors;
 
 
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.ViewAssertion;
-import android.support.test.espresso.ViewInteraction;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewAssertion;
+import androidx.test.espresso.ViewInteraction;
 import android.view.View;
 
 import com.achhatra.threepio.testing.caffelatte.matchers.RecyclerViewItemMatcher;
@@ -11,10 +11,10 @@ import com.achhatra.threepio.testing.caffelatte.matchers.RecyclerViewItemPositio
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 
 class RecyclerViewItemPositionInteractionAdapter implements InteractionAdapter {
 

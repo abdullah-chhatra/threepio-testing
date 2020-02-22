@@ -1,7 +1,7 @@
 package com.achhatra.threepio.testing.caffelatte.interactors;
 
-import android.support.annotation.NonNull;
-import android.support.test.espresso.matcher.ViewMatchers;
+import androidx.annotation.NonNull;
+import androidx.test.espresso.matcher.ViewMatchers;
 
 import com.achhatra.threepio.testing.caffelatte.actions.CheckAction;
 

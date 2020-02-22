@@ -3,7 +3,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 14
@@ -11,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -25,24 +25,25 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
-    implementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation('com.android.support.test.espresso:espresso-contrib:3.0.1') {
+    implementation 'androidx.test:core:1.2.0'
+    implementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation('androidx.test.espresso:espresso-contrib:3.2.0') {
         transitive = false
     }
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
 ext {
     project_version = '0.0.1'
     artifact_id     = 'caffe-latte'
     project_name    = 'Caffe Latte'
-    project_desc    = 'Intutive and easy to use wrapper over Googles Espresso UI testing library.'
+    project_desc    = 'Intutive and easy to use wrapper over Google Espresso UI testing library.'
     project_url     = 'https://github.com/abdullah-chhatra/threepio-testing'
     git_url         = 'https://github.com/abdullah-chhatra/threepio-testing.git'
 }

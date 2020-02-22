@@ -1,6 +1,6 @@
 package com.achhatra.threepio.testing.caffelatte.interactors;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class IButton extends IButtonBase<IButton> {
 

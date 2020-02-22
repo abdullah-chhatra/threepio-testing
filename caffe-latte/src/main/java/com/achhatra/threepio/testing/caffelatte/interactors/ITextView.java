@@ -1,7 +1,7 @@
 package com.achhatra.threepio.testing.caffelatte.interactors;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class ITextView extends ITextViewBase<ITextView> {
 

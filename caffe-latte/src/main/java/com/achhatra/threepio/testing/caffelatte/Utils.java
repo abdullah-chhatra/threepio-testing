@@ -1,12 +1,13 @@
 package com.achhatra.threepio.testing.caffelatte;
 
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 
-import static android.support.test.InstrumentationRegistry.getTargetContext;
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 
 public class Utils {
 
   public static String getString(@StringRes int resourceId) {
-    return getTargetContext().getString(resourceId);
+    return getApplicationContext().getString(resourceId);
   }
 }

@@ -1,7 +1,7 @@
 package com.achhatra.threepio.testing.testapp;
 
 
-import android.support.test.rule.ActivityTestRule;
+import androidx.test.rule.ActivityTestRule;
 
 import com.threepio.testing.ContactsActivity;
 

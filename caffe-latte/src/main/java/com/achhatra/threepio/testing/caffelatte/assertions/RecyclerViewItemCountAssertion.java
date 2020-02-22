@@ -1,7 +1,7 @@
 package com.achhatra.threepio.testing.caffelatte.assertions;
 
 import android.annotation.SuppressLint;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static org.junit.Assert.assertEquals;
 

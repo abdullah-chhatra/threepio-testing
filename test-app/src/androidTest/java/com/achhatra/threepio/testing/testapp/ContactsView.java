@@ -1,6 +1,6 @@
 package com.achhatra.threepio.testing.testapp;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.achhatra.threepio.testing.caffelatte.interactors.ISingleItemTypeRecyclerViewBase;
 import com.achhatra.threepio.testing.caffelatte.interactors.InteractionAdapter;

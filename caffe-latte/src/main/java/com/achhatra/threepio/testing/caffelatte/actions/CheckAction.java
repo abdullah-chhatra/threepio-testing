@@ -1,10 +1,10 @@
 package com.achhatra.threepio.testing.caffelatte.actions;
 
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.action.GeneralClickAction;
-import android.support.test.espresso.action.GeneralLocation;
-import android.support.test.espresso.action.Press;
-import android.support.test.espresso.action.Tap;
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.action.GeneralClickAction;
+import androidx.test.espresso.action.GeneralLocation;
+import androidx.test.espresso.action.Press;
+import androidx.test.espresso.action.Tap;
 import android.view.InputDevice;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.CompoundButton;
 
 import org.hamcrest.Matcher;
 
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.hamcrest.Matchers.allOf;
 
 

@@ -1,7 +1,7 @@
 package com.achhatra.threepio.testing.caffelatte.assertions;
 
-import android.support.test.espresso.NoMatchingViewException;
-import android.support.test.espresso.ViewAssertion;
+import androidx.test.espresso.NoMatchingViewException;
+import androidx.test.espresso.ViewAssertion;
 import android.view.View;
 
 import org.junit.Assert;

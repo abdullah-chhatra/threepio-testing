@@ -1,7 +1,7 @@
 package com.achhatra.threepio.testing.caffelatte.interactors;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class ISingleItemTypeRecyclerViewBase<IB extends IViewBase.Builder, I extends ISingleItemTypeRecyclerViewBase> extends IRecyclerViewBase<I> {
 
