@@ -11,29 +11,30 @@ class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixtur
     @Test
     fun `get request - success`() {
         val user = User(12309L, "User Name", 24)
-        server.onGetUser().returnSuccess(withUser = user)
+        server.onGetUser(withId = user.id).returnSuccess(withUser = user)
 
         client.getRequest(user.id).test()
-            .assertValue(user)
+                .assertValue(user)
     }
 
     @Test
     fun `get request - failure`() {
-        server.onGetUser().returnFailure(500)
+        server.onGetUser(12345).returnFailure(code = 500)
 
         val exception = client.getRequest(12345).test().errors().first()
 
         assertThat(exception, isServerErrorException())
     }
 
-    private fun MockApplicationServer.onGetUser(): GetUserRequestHandler {
-        return addHandler(GetUserRequestHandler())
+    private fun MockApplicationServer.onGetUser(withId: Long): GetUserRequestHandler {
+        return addHandler(GetUserRequestHandler(withId))
     }
 
-    private class GetUserRequestHandler : SimpleRequestHandler() {
+    private class GetUserRequestHandler(val userId: Long) : SimpleRequestHandler() {
 
         override fun canHandle(request: RecordedRequest): Boolean {
-            return true
+            return request.path == "/user/$userId" &&
+                    request.method == "GET"
         }
 
         fun returnSuccess(withUser: User) {
