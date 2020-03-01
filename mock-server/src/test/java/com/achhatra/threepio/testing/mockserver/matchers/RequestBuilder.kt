@@ -9,16 +9,29 @@ class RequestBuilder {
 
     private var method = "GET"
     private var path = "/"
+    private val headers = mutableMapOf<String, String>()
 
     fun method(method: String) = apply {
         this.method = method
     }
 
     fun build(): RecordedRequest {
-        return RecordedRequest("$method $path HTTP1.1", Headers.headersOf(), emptyList(), 0, Buffer(), 0, Socket())
+        return RecordedRequest("$method $path HTTP1.1", headers(), emptyList(), 0, Buffer(), 0, Socket())
     }
 
     fun path(path: String) = apply {
         this.path = path
+    }
+
+    fun header(name: String, value: String) = apply {
+        headers[name] = value
+    }
+
+    private fun headers(): Headers {
+        val nameValues = headers
+                .flatMap { k -> listOf(k.key, k.value) }
+                .toTypedArray()
+
+        return Headers.headersOf(*nameValues)
     }
 }

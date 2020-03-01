@@ -6,7 +6,7 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 
-class RequestMatcher: TypeSafeMatcher<RecordedRequest>() {
+class RequestMatcher : TypeSafeMatcher<RecordedRequest>() {
 
     private val matchers = mutableListOf<Matcher<RecordedRequest>>()
 
@@ -15,11 +15,15 @@ class RequestMatcher: TypeSafeMatcher<RecordedRequest>() {
     }
 
     override fun describeTo(description: Description) {
-        matchers.forEach { it.describeTo(description) }
+        matchers.forEach {
+            description
+                    .appendDescriptionOf(it)
+                    .appendText("\n")
+        }
     }
 
     override fun matchesSafely(request: RecordedRequest): Boolean {
-        if(matchers.isEmpty()) return false
+        if (matchers.isEmpty()) return false
 
         return allOf(matchers).matches(request)
     }
