@@ -1,1 +1,2 @@
 include ':caffe-latte', ':test-app'
+include ':mock-server'

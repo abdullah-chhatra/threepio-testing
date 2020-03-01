@@ -1,0 +1,19 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation kotlinx.stdlib
+
+    implementation okhttp.mockServer
+
+    testImplementation junit.core
+
+    testImplementation retrofit.core
+    testImplementation retrofit.rxAdapter
+    testImplementation retrofit.jsonConverter
+
+    testImplementation rxjava.core
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

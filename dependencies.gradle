@@ -1,0 +1,53 @@
+
+ext {
+
+    versions = [
+        "kotlin"    : "1.3.61"
+    ]
+
+    kotlinx = [
+        "stdlib"    : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    ]
+
+    androidx = [
+        "coreKtx"       : "androidx.core:core-ktx:1.2.0",
+        "appcompat"     : "androidx.appcompat:appcompat:1.1.0",
+
+        "junitExt"      : "androidx.test.ext:junit:1.1.1"
+    ]
+
+    rxjava = [
+        "core"          : "io.reactivex.rxjava2:rxjava:2.2.18"
+    ]
+
+    retrofit = [
+        "core"          : "com.squareup.retrofit2:retrofit:2.7.2",
+        "rxAdapter"     : "com.squareup.retrofit2:adapter-rxjava2:2.7.2",
+        "jsonConverter" : "com.squareup.retrofit2:converter-gson:2.7.2"
+    ]
+
+    okhttp = [
+        "mockServer"    : "com.squareup.okhttp3:mockwebserver:4.4.0"
+    ]
+
+    androidx.espresso = [
+        "core"  : "androidx.test.espresso:espresso-core:3.2.0"
+    ]
+
+    junit = [
+        "core"          : "junit:junit:4.12"
+    ]
+
+    gson = [
+        "core"          : "com.google.code.gson:gson:2.8.6"
+    ]
+
+    libs = [
+        "caffeLatte"    : "libs/caffe-latte-0.0.2.aar"
+    ]
+
+    plugins1 = [
+        "gradle"    : "com.android.tools.build:gradle:3.5.3",
+        "kotlin"    : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    ]
+}
