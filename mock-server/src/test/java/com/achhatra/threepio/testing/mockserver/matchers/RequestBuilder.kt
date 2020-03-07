@@ -25,13 +25,13 @@ class RequestBuilder {
 
     fun build(): RecordedRequest {
         return RecordedRequest(
-                requestLine = "$method $path HTTP1.1",
-                headers = headers(),
-                chunkSizes = emptyList(),
-                bodySize = 0,
-                body = Buffer(),
-                sequenceNumber = 0,
-                socket = Socket())
+                "$method $path HTTP1.1",
+                headers(),
+                emptyList(),
+                0,
+                Buffer(),
+                0,
+                Socket())
     }
 
     private fun headers(): Headers {
@@ -39,6 +39,6 @@ class RequestBuilder {
                 .flatMap { k -> listOf(k.key, k.value) }
                 .toTypedArray()
 
-        return Headers.headersOf(*nameValues)
+        return Headers.of(*nameValues)
     }
 }

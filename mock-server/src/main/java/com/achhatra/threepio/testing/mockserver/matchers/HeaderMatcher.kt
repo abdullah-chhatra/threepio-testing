@@ -15,9 +15,9 @@ class HeaderMatcher(private val name: String, private val value: String?) : Type
 
     override fun matchesSafely(request: RecordedRequest): Boolean {
         return if (value != null)
-            request.headers.any { it == Pair(name, value) }
+            request.headers[name] == value
         else
-            request.headers.any { it.first == name }
+            request.headers[name] != null
     }
 }
 
