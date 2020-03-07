@@ -2,6 +2,7 @@ package com.achhatra.threepio.testing.mockserver
 
 import io.reactivex.Single
 import okhttp3.OkHttpClient
+import org.junit.After
 import org.junit.Before
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -20,6 +21,11 @@ abstract class MockApplicationServerTestFixture {
         server = MockApplicationServer()
         server.start()
         client = createClient()
+    }
+
+    @After
+    fun tearDown() {
+        server.shutdown()
     }
 
     private fun createClient(): Client {

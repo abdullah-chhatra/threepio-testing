@@ -1,11 +1,10 @@
 package com.achhatra.threepio.testing.mockserver
 
-import com.achhatra.threepio.testing.mockserver.matchers.isNotFoundException
+import com.achhatra.threepio.testing.mockserver.matchers.*
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.After
 import org.junit.Test
 
-class MockApplicationServerTest_NoHandler: MockApplicationServerTestFixture() {
+class MockApplicationServerTest_NoHandler : MockApplicationServerTestFixture() {
 
     @Test
     fun `given no handler registered for a request, should return 404(Not Found)`() {
@@ -15,23 +14,28 @@ class MockApplicationServerTest_NoHandler: MockApplicationServerTestFixture() {
         assertThat(exception, isNotFoundException())
     }
 
-//    @Test
-//    fun `given no handler registered for a request, when calling shutdown should fail`() {
-//
-//        client.getRequest().test()
-//
-//        try {
-//            server.shutdown()
-//            fail("Should throw AssertionError")
-//        } catch (e: AssertionError) {
-//            assertThat(e.message, startsWith("No handler for request:"))
-//        }
-//    }
+    @Test(expected = AssertionError::class)
+    fun `no requests received for given handlers`() {
+        val server = MockApplicationServer()
+        server.start()
 
-    @After
-    fun tearDown() {
+        server.addHandler<RequestHandler>(requestHandler("/path1"))
+        server.addHandler<RequestHandler>(requestHandler("/path2"))
+
+        client.getRequest(10).test()
+
         server.shutdown()
     }
 
+    private fun requestHandler(path: String): RequestHandler {
+        return object : SimpleRequestHandler() {
 
+            override fun matcher(): RequestMatcher {
+                return request {
+                    isPost()
+                    hasPath(path)
+                }
+            }
+        }
+    }
 }

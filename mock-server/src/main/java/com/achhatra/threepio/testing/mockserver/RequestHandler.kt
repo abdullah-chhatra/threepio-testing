@@ -5,7 +5,9 @@ import okhttp3.mockwebserver.RecordedRequest
 
 interface RequestHandler {
 
-    fun canHandle(request: RecordedRequest): Boolean
-
     fun handle(request: RecordedRequest): MockResponse
+
+    fun setNext(handler: RequestHandler): RequestHandler
+
+    fun assertRequestHandled()
 }

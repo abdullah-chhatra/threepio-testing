@@ -15,16 +15,23 @@ class RequestBuilder {
         this.method = method
     }
 
-    fun build(): RecordedRequest {
-        return RecordedRequest("$method $path HTTP1.1", headers(), emptyList(), 0, Buffer(), 0, Socket())
-    }
-
     fun path(path: String) = apply {
         this.path = path
     }
 
     fun header(name: String, value: String) = apply {
         headers[name] = value
+    }
+
+    fun build(): RecordedRequest {
+        return RecordedRequest(
+                requestLine = "$method $path HTTP1.1",
+                headers = headers(),
+                chunkSizes = emptyList(),
+                bodySize = 0,
+                body = Buffer(),
+                sequenceNumber = 0,
+                socket = Socket())
     }
 
     private fun headers(): Headers {

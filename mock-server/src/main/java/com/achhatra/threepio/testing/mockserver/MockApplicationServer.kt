@@ -16,6 +16,7 @@ class MockApplicationServer {
 
     fun shutdown() {
         internal.shutdown()
+        dispatcher.assertAllRequestsHandled()
     }
 
     @Suppress("UNCHECKED_CAST")

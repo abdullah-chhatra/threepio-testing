@@ -1,7 +1,6 @@
 package com.achhatra.threepio.testing.mockserver
 
-import com.achhatra.threepio.testing.mockserver.matchers.isServerErrorException
-import okhttp3.mockwebserver.RecordedRequest
+import com.achhatra.threepio.testing.mockserver.matchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 
@@ -9,7 +8,7 @@ import org.junit.Test
 class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixture() {
 
     @Test
-    fun `get request - success`() {
+    fun `request success`() {
         val user = User(12309L, "User Name", 24)
         server.onGetUser(withId = user.id).returnSuccess(withUser = user)
 
@@ -18,7 +17,7 @@ class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixtur
     }
 
     @Test
-    fun `get request - failure`() {
+    fun `request - failure`() {
         server.onGetUser(12345).returnFailure(code = 500)
 
         val exception = client.getRequest(12345).test().errors().first()
@@ -32,9 +31,11 @@ class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixtur
 
     private class GetUserRequestHandler(val userId: Long) : SimpleRequestHandler() {
 
-        override fun canHandle(request: RecordedRequest): Boolean {
-            return request.path == "/user/$userId" &&
-                    request.method == "GET"
+        override fun matcher(): RequestMatcher {
+            return request {
+                isGet()
+                hasPath("/user/$userId")
+            }
         }
 
         fun returnSuccess(withUser: User) {

@@ -4,20 +4,19 @@ import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
 
-class RequestDispatcher: Dispatcher() {
+class RequestDispatcher : Dispatcher() {
 
-    private val handlers = mutableListOf<RequestHandler>()
+    private var handler: RequestHandler = FailingRequestHandler()
 
-    fun add(handler: RequestHandler) {
-        handlers.add(handler)
+    fun add(newHandler: RequestHandler) {
+        handler = newHandler.setNext(handler)
     }
 
     override fun dispatch(request: RecordedRequest): MockResponse {
-        val handler = handlers.find { it.canHandle(request) }
-        if(handler != null) {
-            return handler.handle(request)
-        }
+        return handler.handle(request)
+    }
 
-        return MockResponse().setResponseCode(404)
+    fun assertAllRequestsHandled() {
+        handler.assertRequestHandled()
     }
 }
