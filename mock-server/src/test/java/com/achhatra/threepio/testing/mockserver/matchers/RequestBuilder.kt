@@ -12,6 +12,7 @@ class RequestBuilder {
     private var path = "/"
     private val headers = mutableMapOf<String, String>()
     private val formUrlParams = mutableMapOf<String, String>()
+    private val getParams = mutableMapOf<String, String>()
 
     fun method(method: String) = apply {
         this.method = method
@@ -26,6 +27,10 @@ class RequestBuilder {
         this.path = path
     }
 
+    fun getParam(name: String, value: String) = apply {
+        getParams[name] = value
+    }
+
     fun header(name: String, value: String) = apply {
         headers[name] = value
     }
@@ -36,13 +41,21 @@ class RequestBuilder {
 
     fun build(): RecordedRequest {
         return RecordedRequest(
-                "$method $path HTTP1.1",
+                "$method ${path()} HTTP1.1",
                 headers(),
                 emptyList(),
                 0,
                 bodyBuffer(),
                 0,
                 Socket())
+    }
+
+    private fun path(): String {
+        if(getParams.isEmpty()) return path
+
+        return "$path?" + getParams
+                .map { "${encode(it.key)}=${encode(it.value)}" }
+                .joinToString("&")
     }
 
     private fun headers(): Headers {
