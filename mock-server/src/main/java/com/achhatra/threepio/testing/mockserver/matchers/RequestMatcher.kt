@@ -6,7 +6,7 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 
-class RequestMatcher : TypeSafeMatcher<RecordedRequest>() {
+open class RequestMatcher : TypeSafeMatcher<RecordedRequest>() {
 
     private val matchers = mutableListOf<Matcher<RecordedRequest>>()
 
