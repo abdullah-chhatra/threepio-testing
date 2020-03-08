@@ -7,9 +7,9 @@ import org.hamcrest.TypeSafeMatcher
 class HeaderMatcher(private val name: String, private val value: String?) : TypeSafeMatcher<RecordedRequest>() {
 
     override fun describeTo(description: Description) {
-        description.appendText(" has header with name = $name")
+        description.appendText(" has header with name=$name")
         if (value != null) {
-            description.appendText(" and value = $value")
+            description.appendText(" and value=$value")
         }
     }
 

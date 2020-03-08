@@ -17,6 +17,11 @@ class RequestBuilder {
         this.method = method
     }
 
+    fun formUrlEncoded() = apply {
+        method("POST")
+        header("Content-Type", "x-www-form-urlencoded")
+    }
+
     fun path(path: String) = apply {
         this.path = path
     }
@@ -25,7 +30,7 @@ class RequestBuilder {
         headers[name] = value
     }
 
-    fun formUrlParam(name: String, value: String) = apply {
+    fun formParam(name: String, value: String) = apply {
         formUrlParams[name] = value
     }
 
@@ -41,12 +46,7 @@ class RequestBuilder {
     }
 
     private fun headers(): Headers {
-
-        val extHeaders = if(formUrlParams.isNotEmpty()) {
-            headers + mapOf("Content-Type" to "x-www-form-urlencoded")
-        } else headers
-
-        return Headers.of(extHeaders)
+        return Headers.of(headers)
     }
 
     private fun bodyBuffer(): Buffer {

@@ -1,15 +1,21 @@
 package com.achhatra.threepio.testing.mockserver.matchers
 
+import com.achhatra.threepio.testing.mockserver.matchers.FormUrlEncodedParamMatcher.*
 import okhttp3.mockwebserver.RecordedRequest
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 import java.net.URLDecoder
 
-fun <T: Any> FormUrlEncodeRequestMatcher.hasParam(name: String, value: T) {
-    add(FormUrlEncodeParamMatcher(FormUrlEncodeParamMatcher.Param(name, value.toString())))
+fun RequestMatcher.isFormUrlEncodedRequest() {
+    isPost()
+    hasHeader("Content-Type", "x-www-form-urlencoded")
 }
 
-private class FormUrlEncodeParamMatcher(val param: Param) : TypeSafeMatcher<RecordedRequest>() {
+fun <T: Any> RequestMatcher.hasFormParam(name: String, value: T) {
+    add(FormUrlEncodedParamMatcher(Param(name, value.toString())))
+}
+
+private class FormUrlEncodedParamMatcher(val param: Param) : TypeSafeMatcher<RecordedRequest>() {
 
     override fun describeTo(description: Description) {
         description.appendText(" has param with name=${param.name} and value=${param.value}")
