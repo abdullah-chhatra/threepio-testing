@@ -20,7 +20,7 @@ class RequestBuilder {
 
     fun formUrlEncoded() = apply {
         method("POST")
-        header("Content-Type", "x-www-form-urlencoded")
+        header("Content-Type", "application/x-www-form-urlencoded")
     }
 
     fun path(path: String) = apply {

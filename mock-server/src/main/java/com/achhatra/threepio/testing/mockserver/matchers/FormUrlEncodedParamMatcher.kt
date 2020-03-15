@@ -8,7 +8,7 @@ import java.net.URLDecoder
 
 fun RequestMatcher.isFormUrlEncodedRequest() {
     isPost()
-    hasHeader("Content-Type", "x-www-form-urlencoded")
+    hasHeader("Content-Type", "application/x-www-form-urlencoded")
 }
 
 fun <T: Any> RequestMatcher.hasFormParam(name: String, value: T) {
