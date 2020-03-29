@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Workspace-threepio-testing.iml" filepath="$PROJECT_DIR$/Workspace-threepio-testing.iml" group="threepio-testing" />
       <module fileurl="file://$PROJECT_DIR$/caffe-latte/caffe-latte.iml" filepath="$PROJECT_DIR$/caffe-latte/caffe-latte.iml" group="threepio-testing/caffe-latte" />
       <module fileurl="file://$PROJECT_DIR$/mock-server/mock-server.iml" filepath="$PROJECT_DIR$/mock-server/mock-server.iml" group="threepio-testing/mock-server" />
       <module fileurl="file://$PROJECT_DIR$/test-app/test-app.iml" filepath="$PROJECT_DIR$/test-app/test-app.iml" group="threepio-testing/test-app" />
-      <module fileurl="file://$PROJECT_DIR$/threepio-testing.iml" filepath="$PROJECT_DIR$/threepio-testing.iml" group="threepio-testing" />
     </modules>
   </component>
 </project>
