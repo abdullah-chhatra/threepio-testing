@@ -27,6 +27,20 @@ class MockApplicationServerTest_NoHandler : MockApplicationServerTestFixture() {
         server.shutdown()
     }
 
+    @Test
+    fun `set to lenient - no assert request asserted`() {
+        val server = MockApplicationServer()
+        server.start()
+        server.setLenient(true)
+
+        server.addHandler<RequestHandler>(requestHandler("/path1"))
+        server.addHandler<RequestHandler>(requestHandler("/path2"))
+
+        client.getRequest(10).test()
+
+        server.shutdown()
+    }
+
     private fun requestHandler(path: String): RequestHandler {
         return object : SimpleRequestHandler() {
 

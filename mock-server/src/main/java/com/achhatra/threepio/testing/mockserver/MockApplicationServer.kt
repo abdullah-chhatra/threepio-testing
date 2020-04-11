@@ -6,6 +6,7 @@ class MockApplicationServer {
 
     private val internal = MockWebServer()
     private lateinit var dispatcher: RequestDispatcher
+    private var lenient = false
 
     val baseUrl = internal.url("").toString()
 
@@ -16,7 +17,13 @@ class MockApplicationServer {
 
     fun shutdown() {
         internal.shutdown()
-        dispatcher.assertAllRequestsHandled()
+        if(!lenient) {
+            dispatcher.assertAllRequestsHandled()
+        }
+    }
+
+    fun setLenient(lenient: Boolean) {
+        this.lenient = lenient
     }
 
     @Suppress("UNCHECKED_CAST")

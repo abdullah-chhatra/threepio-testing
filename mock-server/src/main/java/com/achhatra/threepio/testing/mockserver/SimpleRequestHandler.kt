@@ -41,13 +41,17 @@ abstract class SimpleRequestHandler : RequestHandler {
         val response = MockResponse()
                 .setResponseCode(code)
                 .setBody(body)
-        responseQueue.offer(response)
+        addResponse(response)
     }
 
     fun returnFailure(code: Int, body: String = "") {
         val response = MockResponse()
                 .setResponseCode(code)
                 .setBody(body)
+        addResponse(response)
+    }
+
+    protected fun addResponse(response: MockResponse) {
         responseQueue.offer(response)
     }
 
