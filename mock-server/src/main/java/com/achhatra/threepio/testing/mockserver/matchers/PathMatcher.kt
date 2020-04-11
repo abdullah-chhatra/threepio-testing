@@ -3,6 +3,7 @@ package com.achhatra.threepio.testing.mockserver.matchers
 import okhttp3.mockwebserver.RecordedRequest
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
+import java.net.URI
 
 class PathMatcher(private val path: String): TypeSafeMatcher<RecordedRequest>() {
 
@@ -11,7 +12,7 @@ class PathMatcher(private val path: String): TypeSafeMatcher<RecordedRequest>() 
     }
 
     override fun matchesSafely(request: RecordedRequest): Boolean {
-        return request.path == path
+        return URI(request.path).path == path
     }
 }
 

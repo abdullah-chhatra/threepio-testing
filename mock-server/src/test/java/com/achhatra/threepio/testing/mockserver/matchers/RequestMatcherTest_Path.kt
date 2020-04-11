@@ -27,6 +27,20 @@ class RequestMatcherTest_Path {
     }
 
     @Test
+    fun `with params`() {
+
+        val path = "/api/v1.1/resource"
+        val hasPath = request { hasPath(path) }
+
+        val request = RequestBuilder()
+                .path(path)
+                .getParam("selection", "value1,value2")
+                .build()
+
+        assertThat(request, hasPath)
+    }
+
+    @Test
     fun `path starts with - success`() {
 
         val pathStartsWith = request { hasPathThatStartsWith("/start/with") }
