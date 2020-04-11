@@ -1,9 +1,11 @@
 package com.achhatra.threepio.testing.caffelatte.interactors;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.achhatra.threepio.testing.caffelatte.actions.ScrollToEndAction;
 import com.achhatra.threepio.testing.caffelatte.assertions.RecyclerViewItemCountAssertion;
 
 import org.hamcrest.Matcher;
@@ -16,6 +18,10 @@ public class IRecyclerViewBase<I extends IRecyclerViewBase> extends IViewBase<I>
 
   public I hasItemCount(int count) {
     return check(new RecyclerViewItemCountAssertion(count));
+  }
+
+  public I scrollToEnd() {
+    return perform(new ScrollToEndAction());
   }
 
   public <B extends IViewBase.Builder> ItemBuilder<B> item(@NonNull Class<B> builder) {
