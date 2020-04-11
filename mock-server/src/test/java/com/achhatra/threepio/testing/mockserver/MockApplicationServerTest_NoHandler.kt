@@ -30,6 +30,8 @@ class MockApplicationServerTest_NoHandler : MockApplicationServerTestFixture() {
     private fun requestHandler(path: String): RequestHandler {
         return object : SimpleRequestHandler() {
 
+            init { returnSuccess() }
+
             override fun matcher(): RequestMatcher {
                 return request {
                     isPost()
