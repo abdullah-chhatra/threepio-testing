@@ -51,9 +51,21 @@ abstract class SimpleRequestHandler : RequestHandler {
         addResponse(response)
     }
 
+    fun times(times: Int) {
+        if (times < 1 || responseQueue.isEmpty()) return
+
+        repeat(times - 1) {
+            addResponse(responseQueue.peek())
+        }
+    }
+
     protected fun addResponse(response: MockResponse) {
         responseQueue.offer(response)
     }
 
     protected abstract fun matcher(): RequestMatcher
+}
+
+fun SimpleRequestHandler.twice() {
+    times(2)
 }

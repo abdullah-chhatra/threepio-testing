@@ -4,6 +4,7 @@ import com.achhatra.threepio.testing.mockserver.matchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import retrofit2.HttpException
+import java.io.InterruptedIOException
 
 @Suppress("ClassName")
 class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixture() {
@@ -40,6 +41,30 @@ class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixtur
                 .assertValue(user)
     }
 
+    @Test
+    fun `repeat same response`() {
+        val user = User(12309L, "User Name", 24)
+        server.onGetUser(withId = user.id).returnSuccess(withUser = user).times(3)
+
+        repeat(3) {
+            client.getRequest(12309L).test()
+                    .assertValue(user)
+        }
+    }
+
+    @Test
+    fun `repeat same response - more requests`() {
+        val user = User(12309L, "User Name", 24)
+        server.onGetUser(withId = user.id).returnSuccess(withUser = user).times(3)
+
+        repeat(3) {
+            client.getRequest(12309L).test()
+                    .assertValue(user)
+        }
+        client.getRequest(12309L).test()
+                .assertError(InterruptedIOException::class.java)
+    }
+
     private fun MockApplicationServer.onGetUser(withId: Long): GetUserRequestHandler {
         return addHandler(GetUserRequestHandler(withId))
     }
@@ -60,7 +85,7 @@ class MockApplicationServerTest_RequestHandler : MockApplicationServerTestFixtur
 
         fun returnSuccess(withUser: User): GetUserRequestHandler {
             returnSuccess(
-                body = """
+                    body = """
                 {
                     "id": "${withUser.id}",
                     "name": "${withUser.name}",
