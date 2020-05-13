@@ -40,7 +40,7 @@ dependencies {
 }
 
 ext {
-    project_version = '0.0.4'
+    project_version = '0.0.5'
     artifact_id     = 'caffe-latte'
     project_name    = 'Caffe Latte'
     project_desc    = 'Intutive and easy to use wrapper over Google Espresso UI testing library.'
