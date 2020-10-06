@@ -13,6 +13,7 @@ import android.view.View;
 import com.achhatra.threepio.testing.caffelatte.actions.WaitAction;
 import com.achhatra.threepio.testing.caffelatte.actions.WaitUntil;
 
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 
 import static androidx.test.espresso.action.ViewActions.actionWithAssertions;
@@ -76,7 +77,10 @@ public abstract class IViewBase<I extends IViewBase> {
   }
 
   public I waitUntil(Matcher<View> matcher, long timeoutMilliseconds) {
-    return perform(actionWithAssertions(new WaitUntil(matcher, timeoutMilliseconds)));
+    Matcher<View> compositeMatcher = CoreMatchers.allOf(
+            interactionAdapter.getViewMatcher(),
+            matcher);
+    return perform(actionWithAssertions(new WaitUntil(compositeMatcher, timeoutMilliseconds)));
   }
 
   @SuppressWarnings("unchecked")

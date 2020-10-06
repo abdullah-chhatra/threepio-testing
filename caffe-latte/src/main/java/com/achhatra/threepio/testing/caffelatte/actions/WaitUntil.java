@@ -12,6 +12,7 @@ import org.hamcrest.Matcher;
 import java.util.concurrent.TimeoutException;
 
 import static android.os.SystemClock.currentThreadTimeMillis;
+import static android.os.SystemClock.uptimeMillis;
 
 
 public class WaitUntil implements ViewAction {
@@ -36,7 +37,7 @@ public class WaitUntil implements ViewAction {
 
   @Override
   public void perform(UiController uiController, View view) {
-    long endTime = currentThreadTimeMillis() + waitTillMilliseconds;
+    long endTime = uptimeMillis() + waitTillMilliseconds;
     do {
       if (matcher.matches(view)) {
         return;
@@ -44,7 +45,7 @@ public class WaitUntil implements ViewAction {
 
       uiController.loopMainThreadForAtLeast(50);
     }
-    while (currentThreadTimeMillis() < endTime);
+    while (uptimeMillis() < endTime);
 
     throw new PerformException.Builder()
       .withActionDescription(getDescription())

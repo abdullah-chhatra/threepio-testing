@@ -1,6 +1,7 @@
 package com.achhatra.threepio.testing.mockserver.matchers
 
 import okhttp3.Headers
+import okhttp3.Headers.Companion.toHeaders
 import okhttp3.mockwebserver.RecordedRequest
 import okio.Buffer
 import java.net.Socket
@@ -59,7 +60,7 @@ class RequestBuilder {
     }
 
     private fun headers(): Headers {
-        return Headers.of(headers)
+        return headers.toHeaders()
     }
 
     private fun bodyBuffer(): Buffer {
